@@ -12,6 +12,5 @@ class MainActivity : AppCompatActivity() {
         findViewById<StatsView>(R.id.stats).data = listOf(
             500F, 200F, 150F, 150F,
         )
-
     }
 }

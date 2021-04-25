@@ -79,14 +79,16 @@ class StatsView @JvmOverloads constructor(
         if (data.isEmpty()) {
             return
         }
-        var startForm = -90F
+        var startAngle = -90F
 
         for ((index, datum) in data.withIndex()) {
             val angle = 360F * (datum / data.sum())
             paint.color = colors.getOrNull(index) ?: randomColor()
-            canvas.drawArc(oval, startForm, angle, false, paint)
+            canvas.drawArc(oval, startAngle, angle, false, paint)
+            paint.color = colors[0]
+            canvas.drawArc(oval, -90F, 1F, false, paint)
 
-            startForm += angle
+            startAngle += angle
         }
 
         canvas.drawText(
