@@ -66,6 +66,7 @@ class StatsView @JvmOverloads constructor(
             invalidate()
         }
 
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         radius = min(w, h) / 2F - lineWidth / 2
         center = PointF(w / 2F, h / 2F)
@@ -80,9 +81,10 @@ class StatsView @JvmOverloads constructor(
             return
         }
         var startAngle = -90F
+        val sumValues = data.sum()
 
         for ((index, datum) in data.withIndex()) {
-            val angle = 360F * (datum / data.sum())
+            val angle = 360F * (datum / sumValues)
             paint.color = colors.getOrNull(index) ?: randomColor()
             canvas.drawArc(oval, startAngle, angle, false, paint)
             paint.color = colors[0]
@@ -92,7 +94,7 @@ class StatsView @JvmOverloads constructor(
         }
 
         canvas.drawText(
-            "%.2f%%".format(100F),
+            "%.0f%%".format(100F),
             center.x,
             center.y + textPaint.textSize / 4,
             textPaint
