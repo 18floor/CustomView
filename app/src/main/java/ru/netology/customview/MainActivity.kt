@@ -2,6 +2,8 @@ package ru.netology.customview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
+import android.widget.Button
 import ru.netology.customview.view.StatsView
 
 class MainActivity : AppCompatActivity() {
@@ -9,8 +11,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<StatsView>(R.id.stats).data = listOf(
-            500F, 200F, 150F, 150F,
+        val view = findViewById<StatsView>(R.id.stats)
+
+        view.data  = listOf(
+            500F, 500F, 500F, 500F,
         )
+
+        findViewById<Button>(R.id.startButton).setOnClickListener {
+            view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.view_animation))
+
+        }
     }
 }
